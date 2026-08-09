@@ -1,24 +1,48 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState, type ReactNode } from "react";
+import { ArrowDownLeft, ArrowUpRight, Bell, CalendarDays, ChevronDown, CircleHelp, CreditCard, FileText, LayoutDashboard, Menu, MoreHorizontal, Plus, Receipt, Search, Settings, Sparkles, TrendingUp, Wallet, X } from "lucide-react";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
+export const Route = createFileRoute("/")({ component: Index });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+const transactions = [
+  { id: 1, name: "Google Workspace", category: "Software", date: "08 ago, 2026", value: "R$ 145,90", status: "Pago", kind: "out" },
+  { id: 2, name: "Venda #2048 · Cliente novo", category: "Receita de vendas", date: "07 ago, 2026", value: "R$ 2.850,00", status: "Recebido", kind: "in" },
+  { id: 3, name: "Mercado Livre", category: "Fornecedores", date: "06 ago, 2026", value: "R$ 980,00", status: "Pago", kind: "out" },
+  { id: 4, name: "Venda #2047 · Kit escritório", category: "Receita de vendas", date: "05 ago, 2026", value: "R$ 1.420,00", status: "Recebido", kind: "in" },
+];
+
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  const [active, setActive] = useState("Visão geral");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [period, setPeriod] = useState("Este mês");
+  const [query, setQuery] = useState("");
+  const [showAdd, setShowAdd] = useState(false);
+  const [toast, setToast] = useState("");
+  const filteredTransactions = useMemo(() => transactions.filter((item) => `${item.name} ${item.category}`.toLowerCase().includes(query.toLowerCase())), [query]);
+  const notify = (message: string) => { setToast(message); window.setTimeout(() => setToast(""), 2600); };
+
+  return <div className="finance-app">
+    <aside className={`sidebar ${menuOpen ? "is-open" : ""}`}>
+      <div className="brand"><div className="brand-mark"><span>e</span></div><div><strong>edition</strong><small>financeiro</small></div><button className="sidebar-close" onClick={() => setMenuOpen(false)} aria-label="Fechar menu"><X size={19} /></button></div>
+      <div className="workspace-switcher"><div className="workspace-avatar">EG</div><div><b>Edition Geek</b><span>Workspace principal</span></div><ChevronDown size={16} /></div>
+      <nav><p className="nav-label">MENU PRINCIPAL</p>{[{ label: "Visão geral", icon: LayoutDashboard }, { label: "Transações", icon: Receipt }, { label: "Contas a pagar", icon: ArrowUpRight }, { label: "Contas a receber", icon: ArrowDownLeft }, { label: "Relatórios", icon: TrendingUp }].map(({ label, icon: Icon }) => <button key={label} className={`nav-item ${active === label ? "active" : ""}`} onClick={() => { setActive(label); setMenuOpen(false); }}><Icon size={18} /><span>{label}</span>{label === "Contas a pagar" && <em>3</em>}</button>)}<p className="nav-label nav-bottom">CONFIGURAÇÕES</p><button className={`nav-item ${active === "Configurações" ? "active" : ""}`} onClick={() => setActive("Configurações")}><Settings size={18} /><span>Configurações</span></button><button className="nav-item"><CircleHelp size={18} /><span>Central de ajuda</span></button></nav>
+      <div className="sidebar-footer"><div className="pro-icon"><Sparkles size={16} /></div><div><b>Desbloqueie o Pro</b><span>Tenha mais controle da sua gestão</span></div><ChevronDown size={15} className="rotate" /></div>
+    </aside>
+    <main className="main-content">
+      <header className="topbar"><button className="mobile-menu" onClick={() => setMenuOpen(true)} aria-label="Abrir menu"><Menu size={22} /></button><div className="breadcrumb"><span>Financeiro</span><b>/</b><strong>{active}</strong></div><div className="top-actions"><button className="icon-button" aria-label="Notificações" onClick={() => notify("Você não tem novas notificações")}><Bell size={19} /><i /></button><div className="profile"><div className="profile-avatar">LS</div><div><b>Lucas Silva</b><span>Administrador</span></div><ChevronDown size={16} /></div></div></header>
+      <div className="page-wrap">
+        <div className="page-heading"><div><p className="eyebrow">SÁBADO, 09 DE AGOSTO DE 2026</p><h1>Olá, Lucas <span>👋</span></h1><p className="subtitle">Aqui está o resumo do seu negócio hoje.</p></div><button className="primary-button" onClick={() => setShowAdd(true)}><Plus size={18} /> Nova transação</button></div>
+        <div className="overview-toolbar"><div><h2>{active}</h2><p>Acompanhe o desempenho financeiro da Edition Geek.</p></div><div className="toolbar-actions"><div className="search-box"><Search size={17} /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Buscar transação" aria-label="Buscar transação" /></div><button className="period-button" onClick={() => setPeriod(period === "Este mês" ? "Últimos 30 dias" : "Este mês")}><CalendarDays size={16} /> {period}<ChevronDown size={15} /></button></div></div>
+        <section className="stats-grid"><StatCard title="Saldo disponível" value="R$ 24.680,50" hint="+12,5%" detail="vs. mês anterior" icon={<Wallet size={21} />} tone="purple" /><StatCard title="Entradas" value="R$ 18.420,00" hint="+8,2%" detail="vs. mês anterior" icon={<ArrowDownLeft size={21} />} tone="green" /><StatCard title="Saídas" value="R$ 6.240,00" hint="-4,6%" detail="vs. mês anterior" icon={<ArrowUpRight size={21} />} tone="orange" /><StatCard title="A receber" value="R$ 8.750,00" hint="12 contas" detail="até 31 ago" icon={<CreditCard size={21} />} tone="blue" /></section>
+        <section className="dashboard-grid"><div className="panel cashflow-panel"><PanelHeading title="Fluxo de caixa" subtitle="Entradas e saídas nos últimos 6 meses" /><div className="chart-legend"><span><i className="legend-dot purple-dot" /> Entradas</span><span><i className="legend-dot orange-dot" /> Saídas</span></div><div className="chart"><div className="y-axis"><span>20k</span><span>15k</span><span>10k</span><span>5k</span><span>0</span></div><div className="chart-area"><div className="grid-lines"><i /><i /><i /><i /><i /></div><div className="bars">{[{ m: "mar", in: 43, out: 27 }, { m: "abr", in: 54, out: 34 }, { m: "mai", in: 48, out: 29 }, { m: "jun", in: 68, out: 40 }, { m: "jul", in: 61, out: 36 }, { m: "ago", in: 78, out: 43 }].map((bar) => <div className="bar-group" key={bar.m}><div className="bar-stack"><b className="bar-in" style={{ height: `${bar.in}%` }} /><b className="bar-out" style={{ height: `${bar.out}%` }} /></div><span>{bar.m}</span></div>)}</div></div></div></div><div className="panel goals-panel"><PanelHeading title="Metas do mês" subtitle="Agosto 2026" /><div className="goal-progress"><div className="goal-ring"><strong>72%</strong><span>alcançado</span></div><div><b>Meta de faturamento</b><strong>R$ 18.420 <small>/ R$ 25.000</small></strong><div className="progress-track"><i /></div><span className="goal-foot">Faltam R$ 6.580 para sua meta</span></div></div><div className="mini-goal"><span className="goal-icon"><TrendingUp size={16} /></span><div><b>Economia</b><span>R$ 4.200 de R$ 5.000</span></div><strong>84%</strong></div></div></section>
+        <section className="panel transactions-panel"><div className="panel-heading"><div><h3>Transações recentes</h3><p>Últimas movimentações da sua conta</p></div><button className="text-button" onClick={() => setActive("Transações")}>Ver todas <ArrowUpRight size={15} /></button></div><div className="transaction-table"><div className="table-head"><span>DESCRIÇÃO</span><span>CATEGORIA</span><span>DATA</span><span>VALOR</span><span>STATUS</span><span /></div>{filteredTransactions.map((item) => <div className="table-row" key={item.id}><div className="transaction-name"><span className={`transaction-icon ${item.kind}`}><FileText size={16} /></span><b>{item.name}</b></div><span className="category">{item.category}</span><span className="date">{item.date}</span><strong className={item.kind === "in" ? "income" : "expense"}>{item.kind === "in" ? "+" : "−"}{item.value}</strong><span className={`status ${item.kind}`}>{item.status}</span><button className="row-more" aria-label={`Opções para ${item.name}`}><MoreHorizontal size={18} /></button></div>)}</div>{filteredTransactions.length === 0 && <div className="empty-search">Nenhuma transação encontrada.</div>}</section>
+        <footer className="footer-note"><span>© 2026 Edition Geek Financeiro</span><span>Dados atualizados agora <i /></span></footer>
+      </div>
+    </main>
+    {showAdd && <div className="modal-backdrop" onMouseDown={() => setShowAdd(false)}><div className="modal" onMouseDown={(e) => e.stopPropagation()}><div className="modal-head"><div><p className="eyebrow">LANÇAMENTO RÁPIDO</p><h2>Nova transação</h2></div><button className="close-button" onClick={() => setShowAdd(false)} aria-label="Fechar"><X size={19} /></button></div><label>Descrição<input placeholder="Ex.: Compra de materiais" /></label><div className="form-row"><label>Tipo<select><option>Entrada</option><option>Saída</option></select></label><label>Valor<input placeholder="R$ 0,00" /></label></div><label>Categoria<select><option>Selecione uma categoria</option><option>Receita de vendas</option><option>Fornecedores</option><option>Software</option></select></label><div className="modal-actions"><button className="secondary-button" onClick={() => setShowAdd(false)}>Cancelar</button><button className="primary-button" onClick={() => { setShowAdd(false); notify("Transação salva com sucesso"); }}>Salvar transação</button></div></div></div>}
+    {toast && <div className="toast"><span>✓</span>{toast}</div>}
+  </div>;
 }
+
+function PanelHeading({ title, subtitle }: { title: string; subtitle: string }) { return <div className="panel-heading"><div><h3>{title}</h3><p>{subtitle}</p></div><button className="more-button" aria-label="Mais opções"><MoreHorizontal size={20} /></button></div>; }
+function StatCard({ title, value, hint, detail, icon, tone }: { title: string; value: string; hint: string; detail: string; icon: ReactNode; tone: string }) { return <div className="stat-card"><div className={`stat-icon ${tone}`}>{icon}</div><p>{title}</p><strong>{value}</strong><div className="stat-meta"><span className={hint.startsWith("-") ? "negative" : "positive"}>{hint}</span><small>{detail}</small></div></div>; }
