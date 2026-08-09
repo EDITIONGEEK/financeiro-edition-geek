@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState, type ReactNode } from "react";
 import { ArrowDownLeft, ArrowUpRight, Bell, CalendarDays, ChevronDown, CircleHelp, CreditCard, FileText, LayoutDashboard, Menu, MoreHorizontal, Plus, Receipt, Search, Settings, TrendingUp, Wallet, X } from "lucide-react";
+import logoUrl from "../../Logo Redondo.png";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -23,7 +24,7 @@ function Index() {
 
   return <div className="finance-app">
     <aside className={`sidebar ${menuOpen ? "is-open" : ""}`}>
-      <div className="brand"><div className="brand-mark"><span>e</span></div><div><strong>edition</strong><small>financeiro</small></div><button className="sidebar-close" onClick={() => setMenuOpen(false)} aria-label="Fechar menu"><X size={19} /></button></div>
+      <div className="brand"><img className="brand-logo" src={logoUrl} alt="Edition Geek" /><div><strong>edition</strong><small>financeiro</small></div><button className="sidebar-close" onClick={() => setMenuOpen(false)} aria-label="Fechar menu"><X size={19} /></button></div>
       <div className="workspace-switcher"><div className="workspace-avatar">EG</div><div><b>Edition Geek</b><span>Workspace principal</span></div><ChevronDown size={16} /></div>
       <nav><p className="nav-label">MENU PRINCIPAL</p>{[{ label: "Visão geral", icon: LayoutDashboard }, { label: "Transações", icon: Receipt }, { label: "Contas a pagar", icon: ArrowUpRight }, { label: "Contas a receber", icon: ArrowDownLeft }, { label: "Relatórios", icon: TrendingUp }].map(({ label, icon: Icon }) => <button key={label} className={`nav-item ${active === label ? "active" : ""}`} onClick={() => { setActive(label); setMenuOpen(false); }}><Icon size={18} /><span>{label}</span>{label === "Contas a pagar" && <em>3</em>}</button>)}<p className="nav-label nav-bottom">CONFIGURAÇÕES</p><button className={`nav-item ${active === "Configurações" ? "active" : ""}`} onClick={() => setActive("Configurações")}><Settings size={18} /><span>Configurações</span></button><button className="nav-item"><CircleHelp size={18} /><span>Central de ajuda</span></button></nav>
     </aside>
