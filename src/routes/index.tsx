@@ -3,29 +3,28 @@ import { useMemo, useState, type ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowDownLeft, ArrowRight, ArrowUpRight, Bell, Boxes, Calculator, CalendarDays, Check,
-  ChevronDown, ChevronLeft, ChevronRight, CircleHelp, ClipboardList, Clock3, CreditCard,
-  FileBarChart, FileText, Gem, LayoutDashboard, LockKeyhole, Menu, MoreHorizontal, Package,
-  PanelLeft, Plus, Printer, Receipt, Search, Settings, ShoppingBag, ShoppingCart, Store,
+  ChevronDown, ChevronLeft, ChevronRight, CircleHelp, ClipboardList, CreditCard,
+  FileBarChart, FileText, Gem, LayoutDashboard, Menu, MoreHorizontal, Package,
+  PanelLeft, Plus, Printer, Receipt, Search, Settings, ShoppingBag, Store,
   Tags, Truck, UserRound, UsersRound, Wallet, Wrench, X,
 } from "lucide-react";
 import logoUrl from "../../Logo Redondo.png";
 
 export const Route = createFileRoute("/")({ component: Index });
 
-type NavItem = { label: string; icon: LucideIcon; locked?: boolean; badge?: string; group?: string };
+type NavItem = { label: string; icon: LucideIcon; group?: string };
 
 const navItems: NavItem[] = [
   { label: "Dashboard", icon: LayoutDashboard },
-  { label: "Composição de Preços", icon: Calculator, locked: true },
+  { label: "Composição de Preços", icon: Calculator },
   { label: "Orçamentos", icon: FileText },
   { label: "Controle de Pedidos", icon: Package },
-  { label: "Análises", icon: FileBarChart, locked: true },
+  { label: "Análises", icon: FileBarChart },
   { label: "Financeiro", icon: Wallet },
   { label: "Clientes", icon: UsersRound },
   { label: "Recursos", icon: Boxes },
   { label: "Produtos", icon: Gem },
   { label: "Mercado Livre", icon: ShoppingBag, group: "marketplaces" },
-  { label: "Shopee", icon: ShoppingCart, badge: "EM BREVE" },
   { label: "Melhor Envio", icon: Truck },
 ];
 
@@ -51,7 +50,7 @@ function Index() {
       <div className="workspace-switcher"><div className="workspace-avatar">EG</div><div><b>Edition Geek</b><span>Workspace principal</span></div><ChevronDown size={15} /></div>
       <nav className="side-nav">
         <p className="nav-label">MENU PRINCIPAL</p>
-        {navItems.map(({ label, icon: Icon, locked, badge, group }) => <div key={label} className={group === "marketplaces" ? "nav-group-start" : ""}><button className={`nav-item ${active === label ? "active" : ""}`} onClick={() => selectPage(label)}><Icon size={17} /><span>{label}</span>{locked && <LockKeyhole size={13} className="nav-lock" />}{badge && <em>{badge}</em>}</button></div>)}
+        {navItems.map(({ label, icon: Icon, group }) => <div key={label} className={group === "marketplaces" ? "nav-group-start" : ""}><button className={`nav-item ${active === label ? "active" : ""}`} onClick={() => selectPage(label)}><Icon size={17} /><span>{label}</span></button></div>)}
         <p className="nav-label nav-bottom">CONFIGURAÇÕES</p>
         <button className={`nav-item ${active === "Usuários" ? "active" : ""}`} onClick={() => selectPage("Usuários")}><Settings size={17} /><span>Configurações</span></button>
         <button className="nav-item" onClick={() => notify("Central de ajuda em breve")}><CircleHelp size={17} /><span>Central de ajuda</span></button>
@@ -59,7 +58,6 @@ function Index() {
       <div className="sidebar-user"><div className="user-avatar">J</div><div><b>julianaeditiongeek...</b><span>Juliana Edition Geek</span></div><ChevronRight size={15} /></div>
     </aside>
     <main className="main-content">
-      <div className="trial-bar"><span><Gem size={14} /> Teste grátis do Plano Pro</span><span><Clock3 size={13} /> 6d 23h 57min</span><button onClick={() => notify("Plano Pro selecionado")}>Fazer Upgrade</button></div>
       <header className="topbar"><button className="mobile-menu" onClick={() => setMenuOpen(true)} aria-label="Abrir menu"><Menu size={22} /></button><div className="breadcrumb"><span>Edition Geek</span><b>/</b><strong>{activeItem?.label || active}</strong></div><div className="top-actions"><button className="icon-button" aria-label="Notificações" onClick={() => notify("Você não tem novas notificações")}><Bell size={18} /><i /></button><div className="profile"><div className="profile-avatar">J</div><div><b>Juliana</b><span>Administradora</span></div><ChevronDown size={15} /></div></div></header>
       <div className="page-wrap"><PageContent active={active} onAdd={() => setShowAdd(true)} onNotify={notify} /><footer className="footer-note"><span>© 2026 Edition Geek</span><span>Dados atualizados agora <i /></span></footer></div>
     </main>
@@ -81,7 +79,6 @@ function PageContent({ active, onAdd, onNotify }: { active: string; onAdd: () =>
     "Análises": { icon: FileBarChart, subtitle: "Acompanhe os indicadores do seu negócio", action: "Exportar relatório", empty: "Nenhuma análise disponível" },
     "Clientes": { icon: UsersRound, subtitle: "Gerencie seus clientes e relacionamentos", action: "Novo cliente", empty: "Nenhum cliente cadastrado" },
     "Produtos": { icon: Gem, subtitle: "Organize seu catálogo de produtos", action: "Novo produto", empty: "Nenhum produto cadastrado" },
-    "Shopee": { icon: ShoppingCart, subtitle: "Venda seus produtos na Shopee", action: "Conectar loja", empty: "Integração em breve" },
     "Melhor Envio": { icon: Truck, subtitle: "Gerencie suas entregas em um só lugar", action: "Configurar envio", empty: "Nenhuma entrega encontrada" },
   };
   return <EmptyPage title={active} {...(config[active] || config.Clientes)} onAdd={onAdd} />;
