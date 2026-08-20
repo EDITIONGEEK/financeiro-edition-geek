@@ -1,10 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronRight, Heart, Instagram, Menu, MessageCircle, PackageCheck, Search, ShoppingBag, SlidersHorizontal, Sparkles, Star, Trash2, X } from "lucide-react";
 import { useMemo, useState, type ReactNode } from "react";
-import { catalogCategories, categories, formatPublicPrice, publicProducts, type PublicProduct } from "../lib/public-store";
+import { catalogCategories, categories, formatPublicPrice, getPublicProducts, publicProducts, type PublicProduct } from "../lib/public-store";
 
 const whatsappUrl = "https://wa.me/5519983569793?text=Ol%C3%A1%20Edition%20Geek%2C%20quero%20fazer%20uma%20encomenda";
 const buyUrl = (name: string) => `${whatsappUrl}%20Tenho%20interesse%20na%20pe%C3%A7a%20${encodeURIComponent(name)}`;
+const catalogProducts = () => getPublicProducts();
 type CartItem = { product: PublicProduct; quantity: number };
 const readCart = (): CartItem[] => { if (typeof window === "undefined") return []; try { return JSON.parse(localStorage.getItem("edition-geek-store-cart") || "[]"); } catch { return []; } };
 const cartMessage = (cart: CartItem[]) => `https://wa.me/5519983569793?text=${encodeURIComponent(`Olá Edition Geek! Quero fazer este pedido:\n${cart.map((item) => `• ${item.product.name} — ${item.quantity}x — ${formatPublicPrice(item.product.price * item.quantity)}`).join("\n")}\n\nTotal estimado: ${formatPublicPrice(cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0))}\nAguardo confirmação de disponibilidade e pagamento.`)}`;
@@ -31,10 +32,10 @@ function Catalog({ category, onAddCart }: { category: string | undefined; onAddC
   const [limit, setLimit] = useState(24);
   const [showFilters, setShowFilters] = useState(false);
   const [favorites, setFavorites] = useState<string[]>(() => { if (typeof window === "undefined") return []; try { return JSON.parse(localStorage.getItem("edition-geek-store-favorites") || "[]"); } catch { return []; } });
-  const maxCatalogPrice = Math.max(1000, ...publicProducts.map((item) => item.price));
-  const filtered = useMemo(() => publicProducts.filter((item) => { const available = item.quantity > 0 && item.status !== "esgotado"; return item.name.toLowerCase().includes(query.toLowerCase()) && (selectedCategories.length === 0 || selectedCategories.includes(item.category)) && (technique === "Todos" || (technique === "Resina" ? item.technique === "Resina" : item.technique === technique)) && item.price >= minPrice && item.price <= maxPrice && (includeSoldOut || available); }).sort((left, right) => sort === "price-low" ? left.price - right.price : sort === "price-high" ? right.price - left.price : sort === "featured" ? Number(right.featured) - Number(left.featured) : sort === "sold" ? right.price - left.price : Number(right.newProduct) - Number(left.newProduct)), [query, selectedCategories, technique, minPrice, maxPrice, includeSoldOut, sort]);
-  const featured = publicProducts.filter((item) => item.featured && item.quantity > 0).slice(0, 6);
-  const readyToday = publicProducts.filter((item) => item.quantity > 0).slice(0, 4);
+  const products = catalogProducts(); const maxCatalogPrice = Math.max(1000, ...products.map((item) => item.price));
+  const filtered = useMemo(() => products.filter((item) => { const available = item.quantity > 0 && item.status !== "esgotado"; return item.name.toLowerCase().includes(query.toLowerCase()) && (selectedCategories.length === 0 || selectedCategories.includes(item.category)) && (technique === "Todos" || (technique === "Resina" ? item.technique === "Resina" : item.technique === technique)) && item.price >= minPrice && item.price <= maxPrice && (includeSoldOut || available); }).sort((left, right) => sort === "price-low" ? left.price - right.price : sort === "price-high" ? right.price - left.price : sort === "featured" ? Number(right.featured) - Number(left.featured) : sort === "sold" ? right.price - left.price : Number(right.newProduct) - Number(left.newProduct)), [products, query, selectedCategories, technique, minPrice, maxPrice, includeSoldOut, sort]);
+  const featured = products.filter((item) => item.featured && item.quantity > 0).slice(0, 6);
+  const readyToday = products.filter((item) => item.quantity > 0).slice(0, 4);
   const activeFilterCount = selectedCategories.length + (technique !== "Todos" ? 1 : 0) + (minPrice > 0 ? 1 : 0) + (maxPrice < maxCatalogPrice ? 1 : 0) + (includeSoldOut ? 1 : 0);
   const toggleCategory = (item: string) => setSelectedCategories((current) => current.includes(item) ? current.filter((value) => value !== item) : [...current, item]);
   const toggleFavorite = (id: string) => { const next = favorites.includes(id) ? favorites.filter((item) => item !== id) : [...favorites, id]; setFavorites(next); localStorage.setItem("edition-geek-store-favorites", JSON.stringify(next)); };

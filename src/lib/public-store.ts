@@ -20,5 +20,13 @@ export const publicProducts: PublicProduct[] = spreadsheetHistoryProducts
   });
 
 export const categories = catalogCategories;
-export function findPublicProduct(slug: string) { return publicProducts.find((item) => item.slug === slug) || publicProducts.find((item) => slugify(item.name) === slug); }
+export function getPublicProducts(): PublicProduct[] {
+  if (typeof window === "undefined") return publicProducts;
+  try {
+    const admin = JSON.parse(localStorage.getItem("edition-geek-vitrine-admin-products") || "[]") as Array<any>;
+    if (!admin.length) return publicProducts;
+    return admin.map((item, index) => ({ id: String(item.id || `admin-${index}`), name: String(item.name || "Produto Edition Geek"), slug: String(item.slug || slugify(String(item.name || index))), category: String(item.category || "Outro"), type: String(item.technique || "FDM") === "FDM" ? "FDM" : "Resina + Pintura", technique: String(item.technique || "FDM") === "FDM" ? "FDM" : "Resina", material: String(item.material || "PLA+"), price: Number(item.price || 0), eventPrice: Number(item.eventPrice || 0), cost: 0, source: "Vitrine", description: String(item.description || "Produto Edition Geek produzido sob cuidado."), scale: "", quantity: Number(item.stock || 0), status: item.status === "Encomenda" ? "encomenda" : item.status === "Esgotado" ? "esgotado" : item.status === "Oculto" ? "esgotado" : "disponivel", featured: Boolean(item.featured), newProduct: Boolean(item.isNew), registeredAt: String(item.registeredAt || ""), tags: [] as string[], images: item.image ? [String(item.image)] : [] }));
+  } catch { return publicProducts; }
+}
+export function findPublicProduct(slug: string) { const products = getPublicProducts(); return products.find((item) => item.slug === slug) || products.find((item) => slugify(item.name) === slug); }
 export function formatPublicPrice(value: number) { return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }); }
