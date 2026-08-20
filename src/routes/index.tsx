@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import logoUrl from "../../Logo Redondo.png";
 import { spreadsheetHistoryProducts } from "../data/spreadsheet-history";
+import { VitrineAdminPage } from "../components/vitrine-admin";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -28,6 +29,7 @@ const navItems: NavItem[] = [
   { label: "Clientes", icon: UsersRound },
   { label: "Recursos", icon: Boxes },
   { label: "Produtos", icon: Gem },
+  { label: "Vitrine", icon: Store },
   { label: "Mercado Livre", icon: ShoppingBag, group: "marketplaces" },
   { label: "Melhor Envio", icon: Truck },
 ];
@@ -159,6 +161,7 @@ function PageContent({ active, onAdd, onNotify, settings, onSettingsChange }: { 
   if (active === "Controle de Pedidos") return <OrdersPage onAdd={onAdd} />;
   if (active === "Histórico de Produtos") return <HistoryPage settings={settings} />;
   if (active === "Produtos") return <ProductsPage settings={settings} onAdd={onAdd} />;
+  if (active === "Vitrine") return <VitrineAdminPage />;
   if (active === "Financeiro") return <FinancialPage />;
   if (active === "Recursos") return <ResourcesPage />;
   if (active === "Mercado Livre") return <StorePage />;
