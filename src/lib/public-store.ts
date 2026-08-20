@@ -1,37 +1,23 @@
 import { spreadsheetHistoryProducts } from "../data/spreadsheet-history";
 
 export type PublicProduct = {
-  id: string;
-  name: string;
-  slug: string;
-  category: string;
-  type: "FDM" | "Resina + Pintura";
-  price: number;
-  cost: number;
-  source: string;
-  description: string;
-  featured: boolean;
+  id: string; name: string; slug: string; category: string; type: "FDM" | "Resina + Pintura"; technique: "FDM" | "Resina"; material: string;
+  price: number; cost: number; source: string; description: string; scale: string; quantity: number; status: "disponivel" | "esgotado" | "encomenda";
+  featured: boolean; newProduct: boolean; registeredAt: string; tags: string[];
 };
 
 const slugify = (value: string) => value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+export const catalogCategories = ["Colecionáveis", "Chaveiros", "Decoração", "Pokébolas", "Espadas Anime", "Estátuas", "Organizadores", "Personalizados", "Eventos"];
 
 export const publicProducts: PublicProduct[] = spreadsheetHistoryProducts
   .filter((item) => item.suggested > 0 || item.adjusted > 0)
-  .map((item, index) => ({
-    id: `catalog-${item.source}-${index}-${slugify(item.name)}`,
-    name: item.name,
-    slug: `${slugify(item.name)}-${index}`,
-    category: /pokebola/i.test(item.name) || item.source === "Pokebola" ? "Chaveiros e Pokébolas" : /kit|gengar|mew|eevee|charizard/i.test(item.name) ? "Colecionáveis" : "Decoração",
-    type: /resina/i.test(item.name) || item.filamentKg >= 145 ? "Resina + Pintura" : "FDM",
-    price: item.adjusted || item.suggested,
-    cost: item.total,
-    source: item.source,
-    description: `Peça Edition Geek produzida em ${/resina/i.test(item.name) || item.filamentKg >= 145 ? "resina com acabamento premium" : "filamento PLA de alta qualidade"}. Pronta para envio.`,
-    featured: index < 6,
-  }));
+  .map((item, index) => {
+    const isResin = /resina/i.test(item.name) || item.filamentKg >= 145;
+    const category = /pokebola/i.test(item.name) || item.source === "Pokebola" ? "Pokébolas" : /kit|gengar|mew|eevee|charizard|pokemon/i.test(item.name) ? "Colecionáveis" : /caixa|organizador|suporte/i.test(item.name) ? "Organizadores" : /espada|sabre/i.test(item.name) ? "Espadas Anime" : /estatua|busto|senna|baldur|greymon/i.test(item.name) ? "Estátuas" : "Decoração";
+    const slug = `${slugify(item.name)}-${index}`;
+    return { id: `catalog-${item.source}-${index}-${slugify(item.name)}`, name: item.name, slug, category, type: isResin ? "Resina + Pintura" : "FDM", technique: isResin ? "Resina" : "FDM", material: isResin ? "ABS-Like" : "PLA+", price: item.adjusted || item.suggested, cost: item.total, source: item.source, description: `Impressão ${isResin ? "em resina com acabamento premium" : "FDM multipartes em filamento PLA+"}, produzida e conferida pela Edition Geek.`, scale: index % 4 === 0 ? "~20cm" : "", quantity: 1, status: "disponivel", featured: index < 6, newProduct: index < 4, registeredAt: "2025-08-20", tags: [category.toLowerCase(), isResin ? "resina" : "fdm", "presente"] };
+  });
 
-export const categories = Array.from(new Set(publicProducts.map((item) => item.category)));
-
-export function findPublicProduct(slug: string) {
-  return publicProducts.find((item) => item.slug === slug) || publicProducts.find((item) => slugify(item.name) === slug);
-}
+export const categories = catalogCategories;
+export function findPublicProduct(slug: string) { return publicProducts.find((item) => item.slug === slug) || publicProducts.find((item) => slugify(item.name) === slug); }
+export function formatPublicPrice(value: number) { return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }); }
