@@ -3,7 +3,7 @@ import { ArrowRight, ChevronRight, Instagram, Menu, MessageCircle, Search, Spark
 import { useState } from "react";
 import { categories, publicProducts, type PublicProduct } from "../lib/public-store";
 
-const whatsappUrl = "https://wa.me/5511999999999?text=Ol%C3%A1%20Edition%20Geek%2C%20quero%20fazer%20uma%20encomenda";
+const whatsappUrl = "https://wa.me/5519983569793?text=Ol%C3%A1%20Edition%20Geek%2C%20quero%20fazer%20uma%20encomenda";
 
 export function PublicStore({ category, selectedProduct }: { category?: string; selectedProduct?: PublicProduct }) {
   const [menuOpen, setMenuOpen] = useState(false);
