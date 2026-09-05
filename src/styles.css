@@ -460,3 +460,11 @@ body[data-theme="dark"] .print-app .history-page .history-table-panel .history-n
 .print-app .dashboard-kpi-grid,
 .print-app .management-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; width:100%; min-width:0; }
 .print-app .management-kpi { min-width:0; }
+
+/* Os seis KPIs do Dashboard precisam comportar valores monetários completos. */
+.print-app .history-kpis .management-kpi { gap:8px; padding:12px 10px; }
+.print-app .history-kpis .management-kpi > div { min-width:0; flex:1; }
+.print-app .history-kpis .kpi-icon { flex-basis:28px; width:28px; height:28px; }
+.print-app .history-kpis .management-kpi small { display:block; max-width:100%; overflow:hidden; font-size:clamp(8px,0.7vw,10px); letter-spacing:.2px; text-overflow:ellipsis; white-space:nowrap; }
+.print-app .history-kpis .management-kpi strong { display:block; max-width:100%; overflow:visible; font-size:clamp(13px,1.1vw,22px); font-weight:700; letter-spacing:-.45px; line-height:1.1; white-space:nowrap; }
+.print-app .history-kpis .management-kpi em { max-width:100%; overflow:hidden; font-size:clamp(8px,0.65vw,10px); text-overflow:ellipsis; white-space:nowrap; }
