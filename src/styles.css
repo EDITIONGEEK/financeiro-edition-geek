@@ -393,6 +393,33 @@ body[data-theme="dark"] .print-app .management-kpi em.positive { color:#10b981; 
 @media (max-width:900px) and (min-width:641px) { .print-app .main-content { margin-left:225px; } }
 @media (max-width:640px) { .print-app .main-content { margin-left:0; }.print-app .sidebar { left:-260px; }.print-app .sidebar.is-open { left:0; } }
 
+/* Padrão global para barras de abas do ERP */
+.print-app .filter-tabs,
+.print-app .products-view-tabs,
+.print-app .scenario-tabs,
+.print-app .vitrine-modal-tabs { border:1px solid rgba(124,58,237,.15); border-radius:10px; padding:4px; }
+.print-app .filter-tabs button,
+.print-app .products-view-tabs button,
+.print-app .scenario-tabs button { border-radius:7px; padding:8px 16px; font-size:13px; font-weight:400; }
+.print-app .filter-tabs button:hover,
+.print-app .products-view-tabs button:hover,
+.print-app .scenario-tabs button:hover { color:#6d28d9; background:rgba(124,58,237,.08); }
+body[data-theme="dark"] .print-app .filter-tabs,
+body[data-theme="dark"] .print-app .products-view-tabs,
+body[data-theme="dark"] .print-app .scenario-tabs,
+body[data-theme="dark"] .print-app .vitrine-modal-tabs { background:#12121e !important; border-color:rgba(124,58,237,.15) !important; }
+body[data-theme="dark"] .print-app .filter-tabs button,
+body[data-theme="dark"] .print-app .products-view-tabs button,
+body[data-theme="dark"] .print-app .scenario-tabs button { color:#64748b !important; background:transparent !important; }
+body[data-theme="dark"] .print-app .filter-tabs button.selected,
+body[data-theme="dark"] .print-app .products-view-tabs button.selected,
+body[data-theme="dark"] .print-app .scenario-tabs button.selected { color:#ddd6fe !important; background:rgba(124,58,237,.2) !important; font-weight:600 !important; }
+body[data-theme="dark"] .print-app .filter-tabs button:hover,
+body[data-theme="dark"] .print-app .products-view-tabs button:hover,
+body[data-theme="dark"] .print-app .scenario-tabs button:hover { color:#c4b5fd !important; background:rgba(124,58,237,.08) !important; }
+body[data-theme="dark"] .print-app .vitrine-modal-tabs span { color:#64748b; }
+body[data-theme="dark"] .print-app .vitrine-modal-tabs span.active { color:#ddd6fe; }
+
 /* Resumo do Histórico: contraste equivalente aos KPIs do Dashboard */
 .print-app .historico-summary-card { padding:20px 24px; border:1px solid rgba(124,58,237,.2); border-radius:12px; background:#fff; }
 .print-app .historico-summary-card .summary-value { display:block; color:#1f2937; font-size:28px; font-weight:700; line-height:1.1; }
