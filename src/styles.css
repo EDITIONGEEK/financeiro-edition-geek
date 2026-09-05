@@ -392,3 +392,9 @@ body[data-theme="dark"] .print-app .management-kpi em.positive { color:#10b981; 
 .print-app .main-content { margin-left:252px; }
 @media (max-width:900px) and (min-width:641px) { .print-app .main-content { margin-left:225px; } }
 @media (max-width:640px) { .print-app .main-content { margin-left:0; }.print-app .sidebar { left:-260px; }.print-app .sidebar.is-open { left:0; } }
+
+/* KPIs fluidos: nunca permitem rolagem horizontal no painel */
+.print-app .main-content { flex:1; min-width:0; overflow-x:hidden; }
+.print-app .dashboard-kpi-grid,
+.print-app .management-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; width:100%; min-width:0; }
+.print-app .management-kpi { min-width:0; }
