@@ -417,6 +417,9 @@ body[data-theme="dark"] .print-app .scenario-tabs button.selected { color:#ddd6f
 body[data-theme="dark"] .print-app .filter-tabs button:hover,
 body[data-theme="dark"] .print-app .products-view-tabs button:hover,
 body[data-theme="dark"] .print-app .scenario-tabs button:hover { color:#c4b5fd !important; background:rgba(124,58,237,.08) !important; }
+.print-app .margin-value.negative { color:#ef4444 !important; font-weight:700; }
+.print-app .margin-value.warning { color:#f59e0b !important; font-weight:700; }
+.print-app .margin-value.positive { color:#10b981 !important; font-weight:700; }
 body[data-theme="dark"] .print-app .vitrine-modal-tabs span { color:#64748b; }
 body[data-theme="dark"] .print-app .vitrine-modal-tabs span.active { color:#ddd6fe; }
 
