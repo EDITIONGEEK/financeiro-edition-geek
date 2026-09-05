@@ -393,6 +393,19 @@ body[data-theme="dark"] .print-app .management-kpi em.positive { color:#10b981; 
 @media (max-width:900px) and (min-width:641px) { .print-app .main-content { margin-left:225px; } }
 @media (max-width:640px) { .print-app .main-content { margin-left:0; }.print-app .sidebar { left:-260px; }.print-app .sidebar.is-open { left:0; } }
 
+/* Resumo do Histórico: contraste equivalente aos KPIs do Dashboard */
+.print-app .historico-summary-card { padding:20px 24px; border:1px solid rgba(124,58,237,.2); border-radius:12px; background:#fff; }
+.print-app .historico-summary-card .summary-value { display:block; color:#1f2937; font-size:28px; font-weight:700; line-height:1.1; }
+.print-app .historico-summary-card:nth-child(2) .summary-value,
+.print-app .historico-summary-card .summary-value.positive { color:#10b981; }
+.print-app .historico-summary-card .summary-value.negative { color:#ef4444; }
+.print-app .historico-summary-card .summary-label { display:block; margin-top:4px; color:#64748b; font-size:11px; font-weight:500; letter-spacing:.5px; text-transform:uppercase; }
+body[data-theme="dark"] .print-app .historico-summary-card { background:#12121e; }
+body[data-theme="dark"] .print-app .historico-summary-card .summary-value { color:#f1f5f9; }
+body[data-theme="dark"] .print-app .historico-summary-card:nth-child(2) .summary-value,
+body[data-theme="dark"] .print-app .historico-summary-card .summary-value.positive { color:#10b981; }
+body[data-theme="dark"] .print-app .historico-summary-card .summary-value.negative { color:#ef4444; }
+
 /* KPIs fluidos: nunca permitem rolagem horizontal no painel */
 .print-app .main-content { flex:1; min-width:0; overflow-x:hidden; }
 .print-app .dashboard-kpi-grid,
