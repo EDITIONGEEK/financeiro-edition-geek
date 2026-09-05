@@ -406,6 +406,16 @@ body[data-theme="dark"] .print-app .historico-summary-card:nth-child(2) .summary
 body[data-theme="dark"] .print-app .historico-summary-card .summary-value.positive { color:#10b981; }
 body[data-theme="dark"] .print-app .historico-summary-card .summary-value.negative { color:#ef4444; }
 
+/* O nome permanece legível mesmo quando o preço ainda está "A definir" */
+.print-app .history-page .history-table-panel .history-data-row,
+.print-app .history-page .history-table-panel .history-name,
+.print-app .history-page .history-table-panel .history-name b,
+.print-app .history-page .history-table-panel .history-name small { opacity:1 !important; }
+.print-app .history-page .history-table-panel .history-name b { color:#1f2937 !important; font-weight:500 !important; }
+.print-app .history-page .history-table-panel .history-name small { color:#64748b !important; }
+body[data-theme="dark"] .print-app .history-page .history-table-panel .history-name b { color:#f1f5f9 !important; }
+body[data-theme="dark"] .print-app .history-page .history-table-panel .history-name small { color:#64748b !important; }
+
 /* KPIs fluidos: nunca permitem rolagem horizontal no painel */
 .print-app .main-content { flex:1; min-width:0; overflow-x:hidden; }
 .print-app .dashboard-kpi-grid,
