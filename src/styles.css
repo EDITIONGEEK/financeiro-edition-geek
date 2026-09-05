@@ -387,3 +387,8 @@ body[data-theme="dark"] .print-app .complexity-bar-row > b { color:#f1f5f9; }
 body[data-theme="dark"] .print-app .dashboard-note { border-color:rgba(255,255,255,.06); color:#94a3b8; }
 body[data-theme="dark"] .print-app .management-kpi em { color:#94a3b8; background:rgba(255,255,255,.06); }
 body[data-theme="dark"] .print-app .management-kpi em.positive { color:#10b981; background:rgba(16,185,129,.1); }
+/* Navegação fixa durante a rolagem das páginas longas */
+.print-app .sidebar { position:fixed; top:0; left:0; z-index:50; height:100vh; min-height:100vh; overflow-x:hidden; overflow-y:auto; }
+.print-app .main-content { margin-left:252px; }
+@media (max-width:900px) and (min-width:641px) { .print-app .main-content { margin-left:225px; } }
+@media (max-width:640px) { .print-app .main-content { margin-left:0; }.print-app .sidebar { left:-260px; }.print-app .sidebar.is-open { left:0; } }
