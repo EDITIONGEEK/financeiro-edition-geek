@@ -438,6 +438,12 @@ body[data-theme="dark"] .print-app .historico-summary-card .summary-value { colo
 body[data-theme="dark"] .print-app .historico-summary-card:nth-child(2) .summary-value,
 body[data-theme="dark"] .print-app .historico-summary-card .summary-value.positive { color:#10b981; }
 body[data-theme="dark"] .print-app .historico-summary-card .summary-value.negative { color:#ef4444; }
+.settings-actions-buttons { display:flex; align-items:center; gap:8px; }
+.clear-data-modal { width:min(100%,560px); }
+.clear-data-warning { margin:0; padding:14px; border:1px solid #f2c4c4; border-radius:8px; color:#7f1d1d; background:#fff5f5; font-size:12px; line-height:1.55; }
+body[data-theme="dark"] .print-app .clear-data-warning { color:#fecaca; background:rgba(127,29,29,.18); border-color:rgba(239,68,68,.4); }
+body[data-theme="dark"] .print-app .clear-data-modal { background:#1a1a2e; }
+@media (max-width:640px) { .settings-actions-buttons { width:100%; flex-wrap:wrap; }.settings-actions-buttons button { flex:1; }.clear-data-modal { padding:18px; } }
 
 /* O nome permanece legível mesmo quando o preço ainda está "A definir" */
 .print-app .history-page .history-table-panel .history-data-row,
