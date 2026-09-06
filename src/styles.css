@@ -560,3 +560,11 @@ body[data-theme="dark"] .print-app .history-page .history-table-panel .history-n
 @media (min-width:800px) { .public-catalog-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
 @media (min-width:1160px) { .public-catalog-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
 @media (max-width:700px) { .catalog-admin-card { grid-template-columns:64px 1fr; }.catalog-cover-small { width:64px; height:64px; }.catalog-card-actions { grid-column:1/-1; grid-template-columns:repeat(2,1fr); }.catalog-editor-grid { grid-template-columns:1fr; }.catalog-field-wide { grid-column:auto; }.catalogs-heading,.catalog-products-head { align-items:stretch; flex-direction:column; }.catalogs-heading .primary-button,.catalog-products-head .secondary-button { align-self:flex-start; }.vitrine-admin-actions { flex-wrap:wrap; }.vitrine-page-tabs { overflow:auto; }.vitrine-page-tabs button { white-space:nowrap; } }
+
+/* Vitrine e Catálogos seguem o tema escuro também quando o ERP está em modo claro. */
+.print-app .vitrine-admin-page { background:#0f0f1a !important; color:#f1f5f9 !important; }
+.print-app .vitrine-admin-page .panel,.print-app .vitrine-admin-page [class*="panel"],.print-app .catalog-admin-card,.print-app .catalog-empty { background-color:#12121e !important; border-color:rgba(124,58,237,.15) !important; color:#f1f5f9 !important; }
+.print-app .vitrine-admin-page input,.print-app .vitrine-admin-page textarea,.print-app .vitrine-admin-page select,.print-app .catalog-editor-modal input,.print-app .catalog-editor-modal textarea,.print-app .catalog-editor-modal select,.print-app .catalog-product-editor input,.print-app .catalog-product-editor textarea { background-color:#0f0f1a !important; border-color:rgba(124,58,237,.2) !important; color:#f1f5f9 !important; }
+.print-app .catalog-editor-modal,.print-app .catalog-product-editor { background-color:#12121e !important; border-color:rgba(124,58,237,.2) !important; color:#f1f5f9 !important; }
+.print-app .catalog-editor-modal label,.print-app .catalog-product-editor label { color:#94a3b8 !important; }
+.print-app .vitrine-admin-page .vitrine-table-row,.print-app .vitrine-admin-page .vitrine-table-head { background-color:transparent !important; color:#f1f5f9 !important; }
