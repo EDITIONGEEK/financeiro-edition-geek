@@ -591,3 +591,23 @@ body[data-theme="dark"] .print-app .history-page .history-table-panel .history-n
 .print-app .vitrine-admin-page .catalog-editor-modal,.print-app .vitrine-admin-page .catalog-product-editor { background:#f5f3ff !important; border-color:rgba(124,58,237,.2) !important; color:#1e1b4b !important; }
 .print-app .vitrine-admin-page .catalog-editor-grid label,.print-app .vitrine-admin-page .catalog-product-editor label { color:#6b7280 !important; }
 .print-app .vitrine-admin-page .catalog-cover-upload { background:#faf9ff !important; border-color:rgba(124,58,237,.25) !important; color:#9ca3af !important; }
+
+/* Tema global do ERP: off-white lilás fosco e consistente. */
+.print-app .main-content,.print-app .page-wrap,.print-app .content-page { background:#f5f3ff !important; color:#1e1b4b !important; }
+.print-app .content-page .panel,.print-app .content-page [class*="panel"],.print-app .content-page .history-summary > div,.print-app .content-page .management-kpi,.print-app .content-page .card { background:#ede9fe !important; border-color:rgba(124,58,237,.18) !important; color:#1e1b4b !important; box-shadow:0 1px 6px rgba(124,58,237,.07); }
+.print-app .content-page h1,.print-app .content-page h2,.print-app .content-page h3,.print-app .content-page h4,.print-app .content-page h5,.print-app .content-page h6 { color:#1e1b4b !important; }
+.print-app .content-page p,.print-app .content-page label,.print-app .content-page small,.print-app .content-page .subtitle { color:#6b7280 !important; }
+.print-app .content-page input,.print-app .content-page textarea,.print-app .content-page select { background:#faf9ff !important; border-color:rgba(124,58,237,.22) !important; color:#1e1b4b !important; }
+.print-app .content-page input::placeholder,.print-app .content-page textarea::placeholder { color:#9ca3af !important; }
+.print-app .content-page .history-below-target,.print-app .content-page .history-grid-row.history-below-target,[class*="below-target"] { background:rgba(239,68,68,.06) !important; background-color:rgba(239,68,68,.06) !important; border-left:3px solid rgba(239,68,68,.4) !important; }
+.print-app .content-page .history-below-target .history-name b,.print-app .content-page .history-below-target .history-name strong,.print-app .content-page .history-below-target span,.print-app .content-page .history-data-row .history-name b { color:#1e1b4b !important; -webkit-text-fill-color:#1e1b4b !important; opacity:1 !important; }
+.print-app .content-page .history-below-target .history-name small { color:#6b7280 !important; -webkit-text-fill-color:#6b7280 !important; opacity:1 !important; }
+.print-app .content-page .history-name b { color:#1e1b4b !important; -webkit-text-fill-color:#1e1b4b !important; opacity:1 !important; }
+.print-app .content-page .history-name small { color:#6b7280 !important; }
+.print-app .content-page .history-grid-head,.print-app .content-page .products-table-head,.print-app .content-page .vitrine-table-head { color:#9ca3af !important; background:rgba(124,58,237,.06) !important; }
+.print-app .content-page .history-data-row,.print-app .content-page .products-table-row,.print-app .content-page .vitrine-table-row { border-color:rgba(124,58,237,.08) !important; }
+.print-app .content-page .history-data-row:hover,.print-app .content-page .products-table-row:hover,.print-app .content-page .vitrine-table-row:hover { background:rgba(124,58,237,.05) !important; }
+.print-app .content-page .products-view-tabs,.print-app .content-page .filter-tabs,.print-app .content-page .scenario-tabs,.print-app .content-page .vitrine-modal-tabs { background:#ede9fe !important; border-color:rgba(124,58,237,.18) !important; }
+.print-app .content-page .products-view-tabs button,.print-app .content-page .filter-tabs button,.print-app .content-page .scenario-tabs button,.print-app .content-page .vitrine-modal-tabs span { color:#6b7280 !important; }
+.print-app .content-page .products-view-tabs button.selected,.print-app .content-page .filter-tabs button.selected,.print-app .content-page .scenario-tabs button.selected,.print-app .content-page .vitrine-modal-tabs span.active { color:#7c3aed !important; background:rgba(124,58,237,.08) !important; }
+.print-app .content-page .modal,.print-app .content-page [class*="modal"] { background:#f5f3ff !important; border-color:rgba(124,58,237,.2) !important; color:#1e1b4b !important; }
