@@ -628,6 +628,12 @@ body[data-theme="dark"] .print-app .history-page .history-table-panel .history-n
 .order-popover > button { border:0; border-radius:6px; padding:9px 10px; color:#374151; background:transparent; font-size:11px; text-align:left; cursor:pointer; }
 .order-popover > button:hover { color:#6d28d9; background:#ede9fe; }
 .order-popover .delete-action { color:#dc2626; }
+.order-actions-wrap { position:relative; display:flex; align-items:center; }
+.order-dropdown-menu { top:100%; right:0; z-index:9999; min-width:200px; padding:4px 0; display:flex; flex-direction:column; background:#fff; border:1px solid rgba(124,58,237,.15); border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,.10); }
+.order-menu-item { display:flex; align-items:center; gap:8px; width:100%; padding:10px 16px; border:0; border-radius:0; color:#1e1b4b; background:transparent; font-size:14px; cursor:pointer; text-align:left; }
+.order-menu-item:hover { background:rgba(124,58,237,.06); }
+.order-menu-item--danger { color:#dc2626; }
+.order-menu-item--danger:hover { background:rgba(220,38,38,.06); }
 .order-detail-popover { gap:8px; padding:12px; color:#6b7280; font-size:11px; }
 .order-detail-popover b,.order-delete-confirm b { color:#1e1b4b; font-size:12px; }
 .order-detail-popover select { margin-left:5px; border:1px solid rgba(124,58,237,.2); border-radius:5px; padding:4px; color:#1e1b4b; background:#faf9ff; font-size:10px; }
