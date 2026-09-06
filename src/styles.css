@@ -623,6 +623,20 @@ body[data-theme="dark"] .print-app .history-page .history-table-panel .history-n
 .print-app .panel { background:#f3f0ff !important; border:1px solid rgba(124,58,237,.12) !important; }
 .print-app .sidebar { background:#fafafe !important; border-right:1px solid rgba(124,58,237,.12) !important; }
 .print-app .topbar { background:#fafafe !important; border-bottom:1px solid rgba(124,58,237,.1) !important; }
+.order-actions-wrap { position:relative; display:flex; justify-content:flex-end; }
+.order-popover { position:absolute; top:30px; right:0; z-index:30; display:grid; gap:2px; min-width:210px; padding:6px; border:1px solid rgba(124,58,237,.15); border-radius:8px; background:#fff; box-shadow:0 8px 24px rgba(30,27,75,.14); }
+.order-popover > button { border:0; border-radius:6px; padding:9px 10px; color:#374151; background:transparent; font-size:11px; text-align:left; cursor:pointer; }
+.order-popover > button:hover { color:#6d28d9; background:#ede9fe; }
+.order-popover .delete-action { color:#dc2626; }
+.order-detail-popover { gap:8px; padding:12px; color:#6b7280; font-size:11px; }
+.order-detail-popover b,.order-delete-confirm b { color:#1e1b4b; font-size:12px; }
+.order-detail-popover select { margin-left:5px; border:1px solid rgba(124,58,237,.2); border-radius:5px; padding:4px; color:#1e1b4b; background:#faf9ff; font-size:10px; }
+.order-detail-popover > button { padding:6px 8px; color:#7c3aed; text-align:center; }
+.order-delete-confirm { min-width:270px; gap:8px; padding:13px; }
+.order-delete-confirm p { margin:0; color:#6b7280; font-size:11px; line-height:1.45; }
+.order-delete-confirm > div { display:flex; justify-content:flex-end; gap:6px; }
+.order-delete-confirm > div button { border:1px solid rgba(124,58,237,.2); border-radius:6px; padding:7px 10px; color:#6b7280; background:#faf9ff; font-size:10px; cursor:pointer; }
+.order-delete-confirm > div .danger-button { color:#fff; background:#dc2626; border-color:#dc2626; }
 
 /* Histórico sem overflow horizontal causado pelo min-width fixo de 1120px. */
 .print-app .history-grid-head,.print-app .history-grid-row { min-width:0 !important; width:100% !important; max-width:100% !important; grid-template-columns:minmax(140px,1.8fr) minmax(70px,.9fr) minmax(100px,1.2fr) minmax(70px,.8fr) minmax(85px,1fr) minmax(90px,1.1fr) minmax(65px,.75fr) minmax(75px,.9fr) minmax(75px,.9fr) minmax(60px,.7fr) !important; }
