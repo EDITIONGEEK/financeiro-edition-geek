@@ -568,3 +568,26 @@ body[data-theme="dark"] .print-app .history-page .history-table-panel .history-n
 .print-app .catalog-editor-modal,.print-app .catalog-product-editor { background-color:#12121e !important; border-color:rgba(124,58,237,.2) !important; color:#f1f5f9 !important; }
 .print-app .catalog-editor-modal label,.print-app .catalog-product-editor label { color:#94a3b8 !important; }
 .print-app .vitrine-admin-page .vitrine-table-row,.print-app .vitrine-admin-page .vitrine-table-head { background-color:transparent !important; color:#f1f5f9 !important; }
+
+/* Tema claro fosco da Vitrine: lavanda suave, sem branco brilhante. */
+.print-app .vitrine-admin-page { background:#f5f3ff !important; color:#1e1b4b !important; }
+.print-app .vitrine-admin-page .panel,.print-app .vitrine-admin-page [class*="panel"],.print-app .vitrine-admin-page .catalog-admin-card,.print-app .vitrine-admin-page .catalog-empty { background:#f3f0ff !important; border-color:rgba(124,58,237,.18) !important; color:#1e1b4b !important; box-shadow:0 1px 6px rgba(124,58,237,.08); }
+.print-app .vitrine-admin-page .vitrine-page-tabs { background:#ede9fe !important; border-color:rgba(124,58,237,.18) !important; }
+.print-app .vitrine-admin-page .vitrine-page-tabs button { color:#6b7280 !important; background:transparent !important; }
+.print-app .vitrine-admin-page .vitrine-page-tabs button.selected,.print-app .vitrine-admin-page .vitrine-page-tabs button:hover { color:#7c3aed !important; background:rgba(124,58,237,.08) !important; }
+.print-app .vitrine-admin-page h1,.print-app .vitrine-admin-page h2,.print-app .vitrine-admin-page h3,.print-app .vitrine-admin-page h4,.print-app .vitrine-admin-page .catalog-card-title h3,.print-app .vitrine-admin-page .catalog-editor-product b { color:#1e1b4b !important; }
+.print-app .vitrine-admin-page p,.print-app .vitrine-admin-page small,.print-app .vitrine-admin-page .subtitle,.print-app .vitrine-admin-page .catalogs-heading p,.print-app .vitrine-admin-page .catalog-admin-copy p { color:#6b7280 !important; }
+.print-app .vitrine-admin-page .vitrine-stats > div { background:#ede9fe !important; border-color:rgba(124,58,237,.18) !important; box-shadow:0 1px 6px rgba(124,58,237,.08); }
+.print-app .vitrine-admin-page .vitrine-stats span,.print-app .vitrine-admin-page .vitrine-table-head,.print-app .vitrine-admin-page .vitrine-table-row { color:#6b7280 !important; }
+.print-app .vitrine-admin-page input,.print-app .vitrine-admin-page textarea,.print-app .vitrine-admin-page select { background:#faf9ff !important; border-color:rgba(124,58,237,.25) !important; color:#1e1b4b !important; }
+.print-app .vitrine-admin-page input::placeholder,.print-app .vitrine-admin-page textarea::placeholder { color:#9ca3af !important; }
+.print-app .vitrine-admin-page .vitrine-table-row { border-color:rgba(124,58,237,.1) !important; }
+.print-app .vitrine-admin-page .vitrine-table-row:hover { background:rgba(124,58,237,.05) !important; }
+.print-app .vitrine-admin-page .catalog-cover-small,.print-app .vitrine-admin-page .catalog-product-thumb { background:#ede9fe !important; color:#7c3aed !important; }
+.print-app .vitrine-admin-page .catalog-admin-copy code { color:#7c3aed !important; }
+.print-app .vitrine-admin-page .catalog-status { color:#6b7280 !important; background:#faf9ff !important; }
+.print-app .vitrine-admin-page .catalog-status.active { color:#047857 !important; background:#ecfdf5 !important; }
+.print-app .vitrine-admin-page .catalog-card-actions button,.print-app .vitrine-admin-page .catalog-card-actions a { color:#6b7280 !important; background:#faf9ff !important; border-color:rgba(124,58,237,.25) !important; }
+.print-app .vitrine-admin-page .catalog-editor-modal,.print-app .vitrine-admin-page .catalog-product-editor { background:#f5f3ff !important; border-color:rgba(124,58,237,.2) !important; color:#1e1b4b !important; }
+.print-app .vitrine-admin-page .catalog-editor-grid label,.print-app .vitrine-admin-page .catalog-product-editor label { color:#6b7280 !important; }
+.print-app .vitrine-admin-page .catalog-cover-upload { background:#faf9ff !important; border-color:rgba(124,58,237,.25) !important; color:#9ca3af !important; }
