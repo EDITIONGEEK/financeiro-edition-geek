@@ -634,6 +634,17 @@ body[data-theme="dark"] .print-app .history-page .history-table-panel .history-n
 .order-menu-item:hover { background:rgba(124,58,237,.06); }
 .order-menu-item--danger { color:#dc2626; }
 .order-menu-item--danger:hover { background:rgba(220,38,38,.06); }
+.order-dialog { width:min(100%, 560px); max-height:calc(100vh - 40px); overflow:auto; }
+.order-dialog-grid, .order-edit-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px; }
+.order-dialog-grid > div { display:grid; gap:5px; }
+.order-dialog-grid span { color:#6f6b78; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; }
+.order-dialog-grid b { color:#26222d; font-size:13px; font-weight:600; }
+.order-dialog-value { color:#6b21a8 !important; }
+.order-dialog-wide { grid-column:1 / -1; }
+.order-edit-grid label { margin:0; }
+.order-edit-grid input, .order-edit-grid select, .order-edit-grid textarea { display:block; width:100%; margin-top:6px; border:1px solid var(--line); border-radius:7px; padding:10px 11px; color:#44414b; background:#fff; font-size:12px; }
+.order-edit-grid textarea { resize:vertical; }
+@media (max-width:560px) { .order-dialog-grid, .order-edit-grid { grid-template-columns:1fr; } .order-dialog-wide { grid-column:auto; } }
 .order-detail-popover { gap:8px; padding:12px; color:#6b7280; font-size:11px; }
 .order-detail-popover b,.order-delete-confirm b { color:#1e1b4b; font-size:12px; }
 .order-detail-popover select { margin-left:5px; border:1px solid rgba(124,58,237,.2); border-radius:5px; padding:4px; color:#1e1b4b; background:#faf9ff; font-size:10px; }
