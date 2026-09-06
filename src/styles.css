@@ -611,3 +611,15 @@ body[data-theme="dark"] .print-app .history-page .history-table-panel .history-n
 .print-app .content-page .products-view-tabs button,.print-app .content-page .filter-tabs button,.print-app .content-page .scenario-tabs button,.print-app .content-page .vitrine-modal-tabs span { color:#6b7280 !important; }
 .print-app .content-page .products-view-tabs button.selected,.print-app .content-page .filter-tabs button.selected,.print-app .content-page .scenario-tabs button.selected,.print-app .content-page .vitrine-modal-tabs span.active { color:#7c3aed !important; background:rgba(124,58,237,.08) !important; }
 .print-app .content-page .modal,.print-app .content-page [class*="modal"] { background:#f5f3ff !important; border-color:rgba(124,58,237,.2) !important; color:#1e1b4b !important; }
+
+/* Overrides diretos identificados na inspeção visual. */
+.print-app .management-kpi { background:#ede9fe !important; border:1px solid rgba(124,58,237,.18) !important; border-radius:12px !important; box-shadow:0 1px 6px rgba(124,58,237,.07) !important; color:#1e1b4b !important; }
+.print-app .management-kpi p,.print-app .management-kpi span,.print-app .management-kpi small,.print-app .management-kpi label { color:#9ca3af !important; }
+.print-app .panel.production-card,.print-app .panel.stock-card,.print-app .production-card,.print-app .stock-card,.print-app .panel.dashboard-chart-card,.print-app .dashboard-chart-card,.print-app .panel.dashboard-chart-card.type-comparison { background:#f3f0ff !important; border:1px solid rgba(124,58,237,.12) !important; }
+.print-app .search-box.history-search,.print-app .search-box { background:#faf9ff !important; border:1px solid rgba(124,58,237,.2) !important; color:#1e1b4b !important; }
+.print-app .search-box input,.print-app .history-search input { background:transparent !important; color:#1e1b4b !important; }
+.print-app .row-view-button { background:#faf9ff !important; border:1px solid rgba(124,58,237,.2) !important; color:#6b7280 !important; }
+.print-app .row-view-button:hover { background:#ede9fe !important; border-color:rgba(124,58,237,.4) !important; color:#7c3aed !important; }
+.print-app .panel { background:#f3f0ff !important; border:1px solid rgba(124,58,237,.12) !important; }
+.print-app .sidebar { background:#fafafe !important; border-right:1px solid rgba(124,58,237,.12) !important; }
+.print-app .topbar { background:#fafafe !important; border-bottom:1px solid rgba(124,58,237,.1) !important; }
