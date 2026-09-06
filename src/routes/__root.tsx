@@ -117,6 +117,27 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => {
+    const replaceVisibleTerm = (value: string) => value.replace(/\bFDM\b/g, "Filamento");
+    const updateNode = (node: Node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const parent = node.parentElement;
+        if (parent && !["SCRIPT", "STYLE"].includes(parent.tagName)) node.textContent = replaceVisibleTerm(node.textContent || "");
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        const element = node as HTMLElement;
+        ["aria-label", "placeholder", "title"].forEach((attribute) => {
+          const value = element.getAttribute(attribute);
+          if (value?.includes("FDM")) element.setAttribute(attribute, replaceVisibleTerm(value));
+        });
+        node.childNodes.forEach(updateNode);
+      }
+    };
+    updateNode(document.body);
+    const observer = new MutationObserver((mutations) => mutations.forEach((mutation) => mutation.addedNodes.forEach(updateNode)));
+    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
