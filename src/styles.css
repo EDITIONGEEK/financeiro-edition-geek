@@ -139,6 +139,9 @@ body { background: var(--page); }
 .table-panel .table-head, .table-panel .table-row { min-width: 690px; grid-template-columns: 1.1fr 1.4fr 1.1fr 1.2fr 1fr 25px; }
 .table-panel .table-head { padding: 15px 10px 9px; }
 .table-panel .table-row { min-height: 58px; padding: 8px 10px; }
+.orders-content-page { display:flex; flex-direction:column; min-height:calc(100vh - 112px); }
+.orders-content-page .section-heading, .orders-content-page .filter-row { flex-shrink:0; }
+.orders-content-page .table-panel { flex:1; min-height:0; overflow-y:auto; overflow-x:auto; }
 .status.pending { color: #a36b22; background: #fff4d9; }
 .pricing-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 13px; }
 .pricing-side { display: flex; flex-direction: column; gap: 13px; }
