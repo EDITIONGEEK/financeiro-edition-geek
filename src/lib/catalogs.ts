@@ -1,3 +1,5 @@
+export type CatalogPhoto = { url: string; cropX: number; cropY: number; order: number };
+
 export type CatalogProduct = {
   id: string;
   catalogId: string;
@@ -9,6 +11,7 @@ export type CatalogProduct = {
   order: number;
   cropX: number;
   cropY: number;
+  photos: CatalogPhoto[];
 };
 
 export type Catalog = {
@@ -44,7 +47,7 @@ export function newCatalog(): Catalog {
 }
 
 export function newCatalogProduct(catalogId: string, order = 0): CatalogProduct {
-  return { id: crypto.randomUUID(), catalogId, name: "", photoUrl: "", price: 0, description: "", available: true, order, cropX: 50, cropY: 50 };
+  return { id: crypto.randomUUID(), catalogId, name: "", photoUrl: "", price: 0, description: "", available: true, order, cropX: 50, cropY: 50, photos: [] };
 }
 
 export function catalogIsAvailable(catalog: Catalog) {
