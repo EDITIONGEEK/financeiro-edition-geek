@@ -7,6 +7,8 @@ export type CatalogProduct = {
   description: string;
   available: boolean;
   order: number;
+  cropX: number;
+  cropY: number;
 };
 
 export type Catalog = {
@@ -42,7 +44,7 @@ export function newCatalog(): Catalog {
 }
 
 export function newCatalogProduct(catalogId: string, order = 0): CatalogProduct {
-  return { id: crypto.randomUUID(), catalogId, name: "", photoUrl: "", price: 0, description: "", available: true, order };
+  return { id: crypto.randomUUID(), catalogId, name: "", photoUrl: "", price: 0, description: "", available: true, order, cropX: 50, cropY: 50 };
 }
 
 export function catalogIsAvailable(catalog: Catalog) {
