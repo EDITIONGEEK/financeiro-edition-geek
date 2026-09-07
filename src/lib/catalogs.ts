@@ -43,7 +43,7 @@ export function writeCatalogs(catalogs: Catalog[]) {
 }
 
 export function newCatalog(): Catalog {
-  return { id: crypto.randomUUID(), name: "", slug: "", description: "", coverImageUrl: "", status: "inactive", validUntil: "", createdAt: new Date().toISOString().slice(0, 10), products: [] };
+  return { id: crypto.randomUUID(), name: "", slug: "", description: "", coverImageUrl: "", status: "active", validUntil: "", createdAt: new Date().toISOString().slice(0, 10), products: [] };
 }
 
 export function newCatalogProduct(catalogId: string, order = 0): CatalogProduct {
@@ -51,5 +51,5 @@ export function newCatalogProduct(catalogId: string, order = 0): CatalogProduct 
 }
 
 export function catalogIsAvailable(catalog: Catalog) {
-  return catalog.status === "active" && (!catalog.validUntil || catalog.validUntil >= new Date().toISOString().slice(0, 10));
+  return catalog.status !== "inactive" && (!catalog.validUntil || catalog.validUntil >= new Date().toISOString().slice(0, 10));
 }
